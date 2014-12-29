@@ -1,8 +1,8 @@
 <div class="bs-component">
-	<div class="jumbotron">
+	<div ng-repeat="ad in ads" class="jumbotron">
 		<div class="row">
-			<div class="col-lg-9">Alloo</div>
-			<div class="col-lg-3">Date</div>
+			<div class="col-lg-9">Title: {{ ad.title }}</div>
+			<div class="col-lg-3">Date: {{ ad.date | date:"dd-MMM-yyyy" }}</div>
 		</div>
 	</div>
 </div>

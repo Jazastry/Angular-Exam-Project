@@ -1,8 +1,42 @@
-<div class="bs-component">
-	<div ng-repeat="ad in ads" class="jumbotron">
-		<div class="row">
-			<div class="col-lg-9">Title: {{ ad.title }}</div>
-			<div class="col-lg-3">Date: {{ ad.date | date:"dd-MMM-yyyy" }}</div>
+<div class="col-lg-2">
+	<div class="bs-component">
+		<div class="panel panel-default">
+			<div class="panel-heading">Categories</div>
+			<a href=""><div class="panel-body" ng-model="all">All</div></a>
+			<a href=""><div class="panel-body" ng-model="1">Cars</div></a>
+			<a href=""><div class="panel-body" ng-model="2">Properties</div></a>
+			<a href=""><div class="panel-body" ng-model="3">Electronics</div></a>
+			<a href=""><div class="panel-body" ng-model="4">Jobs</div></a>
 		</div>
 	</div>
 </div>
+<div class="col-lg-9">
+	<div class="bs-component">
+		<div class="jumbotron" ng-repeat="ad in ads.ads">
+			<div class="row">
+				<div class="container">
+					<div class="col-lg-9">
+						<h4>{{ ad.title }}</h4>
+					</div>
+					<div class="col-lg-3">{{ ad.date | date:"dd-MMM-yyyy" }}</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">				
+					<div class="col-lg-5">
+						<img class="col-lg-12" ng-src="{{ ad.imageDataUrl }}" src="" alt="">
+					</div>			 
+					<div class="col-lg-7">
+						<div class="panel panel-default col-lg-12">
+							<div class="panel-body">{{ ad.text }}</div>								
+						</div>
+						<div class="panel-heading">Name: {{ ad.ownerName }}</div>
+						<div class="panel-heading">Email: {{ ad.ownerEmail }}</div>
+						<div class="panel-heading">Phone: {{ ad.ownerPhone }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

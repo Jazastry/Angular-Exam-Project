@@ -2,17 +2,24 @@
 	<div class="bs-component">
 		<div class="panel panel-default">
 			<div class="panel-heading">Categories</div>
-			<a href=""><div class="panel-body" ng-model="all">All</div></a>
-			<a href=""><div class="panel-body" ng-model="1">Cars</div></a>
-			<a href=""><div class="panel-body" ng-model="2">Properties</div></a>
-			<a href=""><div class="panel-body" ng-model="3">Electronics</div></a>
-			<a href=""><div class="panel-body" ng-model="4">Jobs</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(undefined)">All</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(1)">Cars</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(2)">Electronics</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(3)">Properties</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(4)">Jobs</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(5)">Education</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(6)">Business</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(7)">Phones</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(8)">Sports</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(9)">Furniture</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(10)">Animals</div></a>
+			<a href=""><div class="panel-body" ng-click="filter(11)">Others</div></a>
 		</div>
 	</div>
 </div>
 <div class="col-lg-9">
 	<div class="bs-component">
-		<div class="jumbotron" ng-repeat="ad in ads.ads">
+		<div class="jumbotron" ng-repeat="ad in ads.ads | filter:{categoryId:cat}:true">
 			<div class="row">
 				<div class="container">
 					<div class="col-lg-9">

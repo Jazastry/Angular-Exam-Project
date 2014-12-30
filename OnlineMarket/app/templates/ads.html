@@ -1,5 +1,5 @@
 <div class="col-lg-2">
-	<div class="bs-component">
+<!-- 	<div class="bs-component">
 		<div class="panel panel-default">
 			<div class="panel-heading">Categories</div>
 			<a href=""><div class="panel-body" ng-click="filter(undefined)">All</div></a>
@@ -15,8 +15,39 @@
 			<a href=""><div class="panel-body" ng-click="filter(10)">Animals</div></a>
 			<a href=""><div class="panel-body" ng-click="filter(11)">Others</div></a>
 		</div>
+	</div> -->
+	<div class="bs-component">
+		<ul class="nav nav-tabs">
+			<li class="dropdown col-lg-12">
+				<a class="dropdown-toggle" href="" data-toggle="dropdown" aria-expanded="false">
+					Categories
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a data-toggle="tab" href="" ng-click="filter(undefined, undefined)">All</a></li>						
+					<li data-toggle="tab" ng-repeat="cat in categories" ng-click="filter(cat.id, town)">
+						<a href="">
+							{{ cat.name }}							
+						</a>												
+					</li>
+				</ul>				
+			</li>
+			<li class="dropdown col-lg-12">
+				<a class="dropdown-toggle" href="" data-toggle="dropdown" aria-expanded="false">
+					Towns
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a data-toggle="tab" href="" ng-click="filter(undefined, undefined)">All</a></li>
+					<li data-toggle="tab" href="" ng-repeat="tow in towns" ng-click="filter(category, tow.id)">
+						<a >{{ tow.name }}</a>
+					</li>					
+				</ul>
+			</li>
+		</ul>
 	</div>
 </div>
+
 <div class="col-lg-9">
 	<div class="bs-component">
 		<div class="jumbotron" ng-repeat="ad in ads.ads | filter:{categoryId:cat}:true">

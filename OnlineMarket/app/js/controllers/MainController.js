@@ -1,18 +1,37 @@
 app.controller('MainController', function($scope, $http){
-	$scope.currentPage = "Home";
-	$scope.cat = undefined;
+
 	$http.get('http://localhost:1337/api/Ads?PageSize=100')
 		.success(function(data){			
 			$scope.ads = data;
 			console.log($scope.ads);
 		});
-	var filter = function(category){
+
+	$http.get('http://localhost:1337/api/categories')
+		.success(function(data){
+			$scope.categories = data;
+			console.log($scope.categories);
+		});
+
+	$http.get('http://localhost:1337/api/towns')
+		.success(function(data){
+			$scope.towns = data;
+			console.log($scope.towns);
+		});
+
+	var filter = function(category, town){
 		if (category !== undefined) {
-			$scope.cat = parseInt(category);
+			$scope.category = parseInt(category);
 		} else {
-			$scope.cat = undefined;
-		}		
+			$scope.category = undefined;
+		}
+		if (town !== undefined) {
+			$scope.town = parseInt(town);
+		} else {
+			$scope.town = undefined;
+		}	
 	};
+	$scope.category = undefined;
+	$scope.town = undefined;
 	$scope.filter = filter;
 });
 

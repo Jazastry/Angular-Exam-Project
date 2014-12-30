@@ -4,35 +4,46 @@ app.controller('MainController', function($scope, $http){
 		.success(function(data){			
 			$scope.ads = data;
 			console.log($scope.ads);
+
+			$http.get('http://localhost:1337/api/categories')
+				.success(function(data){
+					$scope.categories = data;
+					console.log($scope.categories);
+
+					$http.get('http://localhost:1337/api/towns')
+						.success(function(data){
+							$scope.towns = data;
+							console.log($scope.towns);
+						});
+				});
 		});
 
-	$http.get('http://localhost:1337/api/categories')
-		.success(function(data){
-			$scope.categories = data;
-			console.log($scope.categories);
-		});
-
-	$http.get('http://localhost:1337/api/towns')
-		.success(function(data){
-			$scope.towns = data;
-			console.log($scope.towns);
-		});
-
-	var filter = function(category, town){
-		if (category !== undefined) {
-			$scope.category = parseInt(category);
+	var assignFilterVal = function(categoryId, townId){
+		if (categoryId !== undefined) {
+			$scope.categoryId = parseInt(categoryId);
+			console.log('cat: ' + $scope.categoryId + ', tow: ' + $scope.townId);
 		} else {
-			$scope.category = undefined;
+			$scope.categoryId = undefined;
 		}
-		if (town !== undefined) {
-			$scope.town = parseInt(town);
+		if (townId !== undefined) {
+			$scope.townId = parseInt(townId);
+			console.log('cat: ' + $scope.categoryId + ', tow: ' + $scope.townId);
 		} else {
-			$scope.town = undefined;
+			$scope.townId = undefined;
 		}	
 	};
-	$scope.category = undefined;
-	$scope.town = undefined;
-	$scope.filter = filter;
+
+	var townFilter = function(townId) {
+		var town = _.filter($scope.towns, function(town){
+			return town.id === townId;
+		});
+
+		console.log(town);
+	};
+	$scope.townFilter = townFilter;
+	$scope.categoryId = undefined;
+	$scope.townId = undefined;
+	$scope.assignFilterVal = assignFilterVal;
 });
 
 // GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}

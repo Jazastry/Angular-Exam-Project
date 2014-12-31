@@ -73,7 +73,7 @@
 						<div class="panel-heading">Name: {{ ad.ownerName }}</div>
 						<div class="panel-heading">Email: {{ ad.ownerEmail }}</div>
 						<div class="panel-heading">Phone: {{ ad.ownerPhone }}</div>
-						<div class="panel-heading" >Town: {{ townFilter(ad.townId) }}</div>
+						<div class="panel-heading" >Town: {{ townFilter(ad.townId)[0].name }}</div>
 					</div>
 					<!-- towns | filter:{id:ad.townId} -->
 				</div>

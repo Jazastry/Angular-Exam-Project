@@ -1,15 +1,15 @@
-app.controller('MainController', function($scope){	
+app.controller('MainController', function($scope, $http, adsRequester){	
 
 	var assignFilterVal = function(categoryId, townId){
 		if (categoryId !== undefined) {
 			$scope.categoryId = parseInt(categoryId);
-			console.log('cat: ' + $scope.categoryId + ', tow: ' + $scope.townId);
+			//console.log('cat: ' + $scope.categoryId + ', tow: ' + $scope.townId);
 		} else {
 			$scope.categoryId = undefined;
 		}
 		if (townId !== undefined) {
 			$scope.townId = parseInt(townId);
-			console.log('cat: ' + $scope.categoryId + ', tow: ' + $scope.townId);
+			//console.log('cat: ' + $scope.categoryId + ', tow: ' + $scope.townId);
 		} else {
 			$scope.townId = undefined;
 		}	
@@ -19,13 +19,15 @@ app.controller('MainController', function($scope){
 		var town = _.filter($scope.towns, function(town){
 			return parseInt(town.id) === parseInt(townId);
 		});
-		console.log(town);
+
 		return town;
 	};
-	
-	$scope.ads = Ads.getAllAds();
-	// $scope.towns = data;
-	// $scope.categories = data;
+
+	$scope.ads = adsRequester.getAll('ads', 10, 8);	
+	// $scope.numPages = result.numPages;
+	$scope.towns = adsRequester.getAll('towns');
+	console.log($scope.towns);
+	$scope.categories = adsRequester.getAll('categories');
 	$scope.townFilter = townFilter;
 	$scope.categoryId = undefined;
 	$scope.townId = undefined;

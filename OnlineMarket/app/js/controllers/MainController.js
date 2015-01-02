@@ -23,11 +23,25 @@ app.controller('MainController', function($scope, $http, adsRequester){
 		return town;
 	};
 
-	$scope.ads = adsRequester.getAll('ads', 10, 8);	
-	// $scope.numPages = result.numPages;
-	$scope.towns = adsRequester.getAll('towns');
-	console.log($scope.towns);
-	$scope.categories = adsRequester.getAll('categories');
+	var updateAdsFilter = function(category, town){		
+		var ads2 = adsRequester.getAll('ads', town, category);
+		$scope.ads = ads2;
+		console.log($scope.ads);
+	};
+
+	var ads = adsRequester.getAll('ads');
+
+	console.log(ads);
+
+	var currentTownId = undefined;
+	var currentCategoryId = undefined;
+
+	$scope.updateAdsFilter = updateAdsFilter;
+	$scope.currentTown = currentTownId;
+	$scope.currentCategory = currentCategoryId;
+	$scope.ads = ads;	
+	$scope.towns = adsRequester.getArray('towns');
+	$scope.categories = adsRequester.getArray('categories');
 	$scope.townFilter = townFilter;
 	$scope.categoryId = undefined;
 	$scope.townId = undefined;

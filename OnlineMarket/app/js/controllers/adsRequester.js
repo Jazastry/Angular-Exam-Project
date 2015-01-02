@@ -1,33 +1,44 @@
 app.factory('adsRequester', function($resource){
-
 	// $resource(url, [paramDefaults], [actions], options)
-	var data = $resource(
+	var ads = $resource(
 		'http://localhost:1337/api/:item',
 		{item:'@item', townid:'@townid', categoryid:'@categoryid'},
-		{update: {method: 'PUT'}
+		{get: {method: 'GET'},
+		 getArray: {method: 'GET', isArray:true}
 		} 
-	);// /ads?townid=10&categoryid=8
+	);
+
+	var Ads = (function(){
+		function Ads(){
+			
+		}
+	});
 	function getAllAds(item, townid, categoryid) {
-		return data.get({item:item}, {townid:townid,categoryid:categoryid});
+		return ads.get({item:item}, {townid:townid,categoryid:categoryid});
 	}
 
 	function createNewAd(ad) {
-		return data.save(ad);
+		return ads.save(ad);
 	}
 
 	function getAdById(item, id) {
-		return data.get({item:item},{id:id});
+		return ads.get({item:item},{id:id});
 	}
 
 	function editAd(id, ad) {
-		return data.update({id: id}, ad);
+		return ads.update({id: id}, ad);
 	}
 
 	function deleteAd(id) {
-		return data.delete({id: id});
+		return ads.delete({id: id});
+	}
+
+	function arrayGetAll(item) {
+		return ads.getArray({item:item});
 	}
 
 	return {
+		getArray: arrayGetAll,
 		getAll: getAllAds,
 		create: createNewAd,
 		getById: getAdById,

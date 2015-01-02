@@ -17,41 +17,32 @@
 		</div>
 	</div> -->
 	<div class="bs-component">
-		<ul class="nav nav-tabs">
-			<li class="dropdown col-lg-12">
-				<a class="dropdown-toggle" href="" data-toggle="dropdown" aria-expanded="false">
-					Categories
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a data-toggle="tab" href="" ng-click="assignFilterVal(undefined, undefined)">All</a></li>						
-					<li data-toggle="tab" ng-repeat="category in categories" ng-click="assignFilterVal(category.id, town)">
-						<a href="">
-							{{ category.name }}							
-						</a>												
-					</li>
+		<div class="row">		
+			<label for="CategorySelect">Category</label>
+			<select class="col-lg-12" name="CategorySelect" ng-model="currentCategory" ng-change="updateAdsFilter(currentCategory, currentTown)">				
+				<option value="">All</option>						
+					<option value="{{category.id}}" data-toggle="tab" ng-repeat="category in categories">						
+							{{ category.name }}																									
+					</option>
 				</ul>				
-			</li>
-			<li class="dropdown col-lg-12">
-				<a class="dropdown-toggle" href="" data-toggle="dropdown" aria-expanded="false">
-					Towns
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a data-toggle="tab" href="" ng-click="assignFilterVal(undefined, undefined)">All</a></li>
-					<li data-toggle="tab" href="" ng-repeat="town in towns" ng-click="assignFilterVal(category, town.id)">
-						<a >{{ town.name }}</a>
-					</li>					
-				</ul>
-			</li>
-
-		</ul>
+			</select>
+		</div>
+		<div class="row">
+			<label for="TownSelect">Town</label>
+			<select class="col-lg-12" name="TownSelect" ng-model="currentTown" ng-change="updateAdsFilter(currentCategory, currentTown)">				
+				<option value="">All</option>						
+					<option value="{{town.id}}" data-toggle="tab" ng-repeat="town in towns">						
+							{{ town.name }}																									
+					</option>
+				</ul>				
+			</select>		
+		</div>
 	</div>
 </div>
 
 <div class="col-lg-9" ng-cloak>
-	<div class="bs-component">
-		<div class="jumbotron" ng-repeat="ad in ads.ads | filter:{categoryId:categoryId}:true | filter:{townId:townId}:true">
+	<div class="bs-component"> 
+		<div class="jumbotron" ng-repeat="ad in ads.ads ">
 		<!-- ng-repeat="ad in ads.ads | filter:{categoryId:categoryId}:true | filter:{townId:townId}:true" -->
 			<div class="row"> 
 				<div class="container">
@@ -73,7 +64,7 @@
 						<div class="panel-heading">Name: {{ ad.ownerName }}</div>
 						<div class="panel-heading">Email: {{ ad.ownerEmail }}</div>
 						<div class="panel-heading">Phone: {{ ad.ownerPhone }}</div>
-						<div class="panel-heading" >Town: {{ townFilter(ad.townId)[0].name }}</div>
+						<!-- <div class="panel-heading" >Town: {{ townFilter(ad.townId)[0].name }}</div> -->
 					</div>
 					<!-- towns | filter:{id:ad.townId} -->
 				</div>

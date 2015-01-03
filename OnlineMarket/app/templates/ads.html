@@ -1,49 +1,15 @@
 <div class="col-lg-2">
-<!-- 	<div class="bs-component">
+	<div class="bs-component">
 		<div class="panel panel-default">
 			<div class="panel-heading">Categories</div>
-			<a href=""><div class="panel-body" ng-click="filter(undefined)">All</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(1)">Cars</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(2)">Electronics</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(3)">Properties</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(4)">Jobs</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(5)">Education</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(6)">Business</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(7)">Phones</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(8)">Sports</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(9)">Furniture</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(10)">Animals</div></a>
-			<a href=""><div class="panel-body" ng-click="filter(11)">Others</div></a>
-		</div>
-	</div> -->
-	<div class="bs-component">
-		<div class="row">		
-			<label for="CategorySelect">Category</label>
-			<select class="col-lg-12" name="CategorySelect" ng-model="currentCategory" ng-change="updateAdsFilter(currentCategory, currentTown)">				
-				<option value="">All</option>						
-					<option value="{{category.id}}" data-toggle="tab" ng-repeat="category in categories">						
-							{{ category.name }}																									
-					</option>
-				</ul>				
-			</select>
-		</div>
-		<div class="row">
-			<label for="TownSelect">Town</label>
-			<select class="col-lg-12" name="TownSelect" ng-model="currentTown" ng-change="updateAdsFilter(currentCategory, currentTown)">				
-				<option value="">All</option>						
-					<option value="{{town.id}}" data-toggle="tab" ng-repeat="town in towns">						
-							{{ town.name }}																									
-					</option>
-				</ul>				
-			</select>		
+			<a href=""><div class="panel-body" ng-click="">All</div></a>
+			<a href=""><div class="panel-body" ng-click="">Cars</div></a>
 		</div>
 	</div>
 </div>
-
-<div class="col-lg-9" ng-cloak>
+<div class="col-lg-8" ng-cloak>
 	<div class="bs-component"> 
-		<div class="jumbotron" ng-repeat="ad in ads.ads ">
-		<!-- ng-repeat="ad in ads.ads | filter:{categoryId:categoryId}:true | filter:{townId:townId}:true" -->
+		<div class="jumbotron" ng-repeat="ad in ads.ads ">		
 			<div class="row"> 
 				<div class="container">
 					<div class="col-lg-9">
@@ -64,11 +30,40 @@
 						<div class="panel-heading">Name: {{ ad.ownerName }}</div>
 						<div class="panel-heading">Email: {{ ad.ownerEmail }}</div>
 						<div class="panel-heading">Phone: {{ ad.ownerPhone }}</div>
-						<!-- <div class="panel-heading" >Town: {{ townFilter(ad.townId)[0].name }}</div> -->
+						<div class="panel-heading" >Town: {{ townFilter(ad.townId)[0].name }}</div>
 					</div>
 					<!-- towns | filter:{id:ad.townId} -->
 				</div>
 			</div> 
+		</div>
+	</div>
+</div>
+<div class="col-lg-2" ng-cloak>
+	<div class="bs-component">
+		<h6>Filter By</h6>
+		<div class="container">
+			<div class="row col-lg-2">		
+				<label for="CategorySelect">Category</label>
+				<select class="col-lg-12" name="CategorySelect" ng-model="currentCategory" ng-change="updateAdsFilter(currentCategory, currentTown)">				
+					<option value="">All</option>						
+						<option value="{{category.id}}" data-toggle="tab" ng-repeat="category in categories">						
+								{{ category.name }}																									
+						</option>
+					</ul>				
+				</select>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row col-lg-2">
+				<label for="TownSelect">Town</label>
+				<select class="col-lg-12" name="TownSelect" ng-model="currentTown" ng-change="updateAdsFilter(currentCategory, currentTown)">				
+					<option value="">All</option>						
+						<option value="{{town.id}}" data-toggle="tab" ng-repeat="town in towns">						
+								{{ town.name }}																									
+						</option>
+					</ul>				
+				</select>		
+			</div>
 		</div>
 	</div>
 </div>

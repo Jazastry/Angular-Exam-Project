@@ -43,7 +43,7 @@
 		<h6>Filter By</h6>
 		<div class="row col-lg-12">		
 			<label for="CategorySelect">Category</label>
-			<select class="col-lg-12" name="CategorySelect" ng-model="currentCategory" ng-change="updateAdsFilter(currentCategory, currentTown)">				
+			<select class="col-lg-12" name="CategorySelect" ng-model="currentCategory" ng-change="updateAds(currentCategory, currentTown)">				
 				<option value="">All</option>						
 					<option value="{{category.id}}" data-toggle="tab" ng-repeat="category in categories">						
 							{{ category.name }}																									
@@ -53,7 +53,7 @@
 		</div>
 		<div class="row col-lg-12">
 			<label for="TownSelect">Town</label>
-			<select class="col-lg-12" name="TownSelect" ng-model="currentTown" ng-change="updateAdsFilter(currentCategory, currentTown)">				
+			<select class="col-lg-12" name="TownSelect" ng-model="currentTown" ng-change="updateAds(currentCategory, currentTown)">				
 				<option value="">All</option>						
 					<option value="{{town.id}}" data-toggle="tab" ng-repeat="town in towns">						
 							{{ town.name }}																									
@@ -67,15 +67,21 @@
 	<div class="col-lg-12">
 		<div class="bs-component text-center">
 			<ul class="pagination">
-				<li class="disabled">
-				                                <!-- function(category, town, startpage ,pagesize) -->
-					<a href="" ng-click="updateAdsFilter(currentCategory, currentTown, 1, pagesize)">«</a>
+				<li>
+					<a href="" ng-click="updateAds(currentCategory, currentTown, 1, pagesize)">First</a>
 				</li>
-				<li ng-repeat="page in numbToPageArray(ads.numPages)" ng-click="updateAdsFilter(currentCategory, currentTown, page, pagesize)">
+				<li>
+				                                <!-- function(category, town, startpage ,pagesize) -->
+					<a href="" ng-click="updateAds(currentCategory, currentTown, 1, pagesize)">«</a>
+				</li>
+				<li ng-repeat="page in updatePagination(currentPage, ads.numPages)" ng-click="updateAds(currentCategory, currentTown, page, pagesize, ads.numPages)">
 					<a href="" >{{ page }}</a>
 				</li>
 				<li class="disabled">
 					<a href="">»</a>
+				</li>
+				<li>
+					<a href="" ng-click="updateAds(currentCategory, currentTown, ads.numPages, pagesize)">Last</a>
 				</li>
 			</ul>
 		</div>

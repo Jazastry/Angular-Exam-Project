@@ -9,13 +9,13 @@
 	<link rel="stylesheet" href="lib/bootstrap/bootstrap-responsive.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-cloak>
 	<div class="container">
 		<div class="bs-docs-section clearfix">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="page-header">
-						<h3 id="navbar">Ads - {{ currentPage }}</h3>
+						<h3 id="navbar">Ads - {{ currentPageName }}</h3>
 					</div>				
 					<div class="bs-component">
 						<div class="navbar navbar-default">
@@ -51,7 +51,7 @@
 	<script src="lib/angular/angular-resource.js"></script>
 	<script src="lib/underscore/underscore.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/controllers/adsRequester.js"></script>
-	<script src="js/controllers/MainController.js"></script>
+	<!-- <script src="js/controllers/adsRequester.js"></script> -->
+	<!-- <script src="js/controllers/MainController.js"></script> -->
 </body>
 </html>

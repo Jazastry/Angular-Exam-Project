@@ -13,8 +13,8 @@ app.factory('adsRequester', function($resource){
 			
 		}
 	});
-	function getAllAds(item, townid, categoryid) {
-		return ads.get({item:item}, {townid:townid,categoryid:categoryid});
+	function getAllAds(item, townid, categoryid, pagesize, startpage) {
+		return ads.get({item:item}, {townid:townid,categoryid:categoryid,pagesize:pagesize,startpage:startpage});
 	}
 
 	function createNewAd(ad) {

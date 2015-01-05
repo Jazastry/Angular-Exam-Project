@@ -68,11 +68,11 @@
 		<div class="bs-component text-center">
 			<ul class="pagination">
 				<li class="disabled">
-				                                <!-- function(category, town, pagesize, startpage) -->
-					<a href="" ng-click="updateAdsFilter(currentCategory, currentTown, pagesize, 1)">«</a>
+				                                <!-- function(category, town, startpage ,pagesize) -->
+					<a href="" ng-click="updateAdsFilter(currentCategory, currentTown, 1, pagesize)">«</a>
 				</li>
-				<li class="active" ng-click="updateAdsFilter(currentCategory, currentTown, pagesize, 1)">
-					<a href="">{{ currentPageNumb }}</a>
+				<li ng-repeat="page in numbToPageArray(ads.numPages)" ng-click="updateAdsFilter(currentCategory, currentTown, page, pagesize)">
+					<a href="" >{{ page }}</a>
 				</li>
 				<li class="disabled">
 					<a href="">»</a>

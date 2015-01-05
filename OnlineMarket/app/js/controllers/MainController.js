@@ -3,6 +3,9 @@ app.controller('MainController', function($scope, $http, adsRequester){
 	var currentCategoryId = undefined;
 	var currentPageNumb = 1;
 	var pagesize = 2;
+	 // function getAllAds(item, townid, categoryid, startpage, pagesize)
+	var ads = adsRequester.getAll('ads', currentTownId, currentCategoryId, 1, 2);
+	// var numPages = numbToPageArray(ads.numPages);
 
 	var assignFilterVal = function(categoryId, townId){
 		if (categoryId !== undefined) {
@@ -27,16 +30,26 @@ app.controller('MainController', function($scope, $http, adsRequester){
 		return town;
 	};
 
-	var updateAdsFilter = function(category, town, pagesize, startpage){	
-	//              function getAllAds(item, townid, categoryid, pagesize, startpage)	
-		var ads = adsRequester.getAll('ads', town, category, pagesize, startpage);
+	var updateAdsFilter = function(category, town, startpage, pagesize){	
+	//              function getAllAds(item, townid, categoryid, startpage, pagesize)	
+		ads = adsRequester.getAll('ads', town, category, startpage, pagesize);
 		$scope.ads = ads;
-		console.log($scope.ads);
 	};
 
-	var ads = adsRequester.getAll('ads');
-	console.log(ads);
+	var processPagination = function (clickedPage){
 
+	};
+
+	var numbToPageArray = function (number) {
+		var arr = [];
+		for (var i = 0; i < number; i++) {
+			arr[i] = i+1;
+		}
+
+		return arr;
+	};
+
+	$scope.numbToPageArray = numbToPageArray;
 	$scope.currentPageName = 'Home';
 	$scope.currentPageNumb = currentPageNumb;
 	$scope.pagesize = pagesize;
@@ -50,6 +63,9 @@ app.controller('MainController', function($scope, $http, adsRequester){
 	$scope.categoryId = undefined;
 	$scope.townId = undefined;
 	$scope.assignFilterVal = assignFilterVal;
+
+	//console.log(ads.ads);
+	// console.log($scope.ads.numPages);
 });
 
 // GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}

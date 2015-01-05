@@ -1,6 +1,8 @@
 app.controller('MainController', function($scope, $http, adsRequester){	
 	var currentTownId = undefined;
 	var currentCategoryId = undefined;
+	var currentPageNumb = 1;
+	var pagesize = 2;
 
 	var assignFilterVal = function(categoryId, townId){
 		if (categoryId !== undefined) {
@@ -27,8 +29,8 @@ app.controller('MainController', function($scope, $http, adsRequester){
 
 	var updateAdsFilter = function(category, town, pagesize, startpage){	
 	//              function getAllAds(item, townid, categoryid, pagesize, startpage)	
-		var ads2 = adsRequester.getAll('ads', town, category, pagesize, startpage);
-		$scope.ads = ads2;
+		var ads = adsRequester.getAll('ads', town, category, pagesize, startpage);
+		$scope.ads = ads;
 		console.log($scope.ads);
 	};
 
@@ -36,6 +38,8 @@ app.controller('MainController', function($scope, $http, adsRequester){
 	console.log(ads);
 
 	$scope.currentPageName = 'Home';
+	$scope.currentPageNumb = currentPageNumb;
+	$scope.pagesize = pagesize;
 	$scope.updateAdsFilter = updateAdsFilter;
 	$scope.currentTown = currentTownId;
 	$scope.currentCategory = currentCategoryId;

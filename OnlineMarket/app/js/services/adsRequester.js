@@ -2,7 +2,7 @@ app.factory('adsRequester', function($resource){
 	// $resource(url, [paramDefaults], [actions], options)
 	var ads = $resource(
 		'http://localhost:1337/api/:item',
-		{item:'@item', townid:'@townid', categoryid:'@categoryid'},
+		{item:'@item', townid:'@townid', categoryid:'@categoryid', startpage:'@startpage', pagesize:'@pagesize'},
 		{get: {method: 'GET'},
 		 getArray: {method: 'GET', isArray:true}
 		} 
@@ -13,8 +13,8 @@ app.factory('adsRequester', function($resource){
 			
 		}
 	});
-	function getAllAds(item, townid, categoryid, pagesize, startpage) {
-		return ads.get({item:item}, {townid:townid,categoryid:categoryid,pagesize:pagesize,startpage:startpage});
+	function getAllAds(item, townid, categoryid, startpage, pagesize) {
+		return ads.get({item:item}, {townid:townid, categoryid:categoryid, startpage:startpage, pagesize:pagesize});
 	}
 
 	function createNewAd(ad) {

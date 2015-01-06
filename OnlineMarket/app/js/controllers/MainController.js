@@ -1,10 +1,15 @@
-app.controller('MainController', function($scope, $http, adsRequester){	
+app.controller('MainController', function($scope, $http, $promise, adsRequester){	
 	var currentTownId = undefined;
 	var currentCategoryId = undefined;
 	var currentPage = 1;
 	var pagesize = 2;
 	var paginationLength = 3;
 	var ads = adsRequester.getAll('ads', currentTownId, currentCategoryId, 1, 2);
+	var pages = adsRequester.getAll('ads', undefined, undefined, 1, 100)
+		.$promise.then(function(ads){
+			$scope.pages = ads.numPages;
+	});
+
 
 	var assignFilterVal = function(categoryId, townId){
 		if (categoryId !== undefined) {
@@ -38,17 +43,32 @@ app.controller('MainController', function($scope, $http, adsRequester){
 	};
 
 	var updatePagination = function (selectedPage, numPages){
-		var pageArray = [];
+		var pageArray = [1];
 		var length = 3;
 		var start = 1;
 		var end = start + length;
 		console.log('length-'+length+';start-'+start+';end'+end);
+		console.log();
 		console.log(pageArray);
-		// if ((selectedPage < pageArray[0]) || (selectedPage > pageArray[pageArray.length])) {
-
-		// }
-
+		console.log(numPages);
+		if ((numPages <= length)) {
+			start = 1;
+			end = start + numPages;
+		} else if ((selectedPage > pageArray[pageArray.length - 1]) &&
+				  (numPages > (pageArray[pageArray.length - 1])) &&
+				  (numPages >= (pageArray[pageArray.length] + length))) {
+			start = $scope.currentPage + 1;
+			end = start + length;
+		} else if ((selectedPage > pageArray[pageArray.length - 1]) &&
+				  (numPages > (pageArray[pageArray.length - 1])) &&
+				  (numPages < (pageArray[pageArray.length] + length))) {
+			start = $scope.currentPage + 1;
+			end = start + numPages;
+		} else if () {
+			
+		}
 		pageArray = _.range(start, end);
+		return pageArray;
 	};
 
 	var numbToPageArray = function (number) {
@@ -64,10 +84,11 @@ app.controller('MainController', function($scope, $http, adsRequester){
 	$scope.currentPageName = 'Home';
 	$scope.currentPage = currentPage;
 	$scope.pagesize = pagesize;
-	$scope.updateAdsFilter = updateAdsFilter;
+	$scope.updateAds = updateAds;
 	$scope.currentTown = currentTownId;
 	$scope.currentCategory = currentCategoryId;
 	$scope.ads = ads;	
+	$scope.numPages = ads.numPages;
 	$scope.towns = adsRequester.getArray('towns');
 	$scope.categories = adsRequester.getArray('categories');
 	$scope.townFilter = townFilter;

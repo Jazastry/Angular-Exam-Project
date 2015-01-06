@@ -66,7 +66,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="bs-component text-center">
-			<ul class="pagination">
+			<ul class="pagination" ng-init="updatePagination(0, ads.numPages)">
 				<li>
 					<a href="" ng-click="updateAds(currentCategory, currentTown, 1, pagesize)">First</a>
 				</li>
@@ -74,14 +74,14 @@
 				                                <!-- function(category, town, startpage ,pagesize) -->
 					<a href="" ng-click="updateAds(currentCategory, currentTown, 1, pagesize)">«</a>
 				</li>
-				<li ng-repeat="page in updatePagination(currentPage, ads.numPages)" ng-click="updateAds(currentCategory, currentTown, page, pagesize, ads.numPages)">
+				<li ng-repeat="page in pageArray" ng-click="updateAds(currentCategory, currentTown, page, pagesize, ads.numPages, undefined)">
 					<a href="" >{{ page }}</a>
 				</li>
-				<li class="disabled">
+				<li ng-click="updateAds(currentCategory, currentTown, pageArray[pageArray.length-1] + 1, pagesize, ads.numPages, 1)">
 					<a href="">»</a>
 				</li>
 				<li>
-					<a href="" ng-click="updateAds(currentCategory, currentTown, ads.numPages, pagesize)">Last</a>
+					<a href="">Last {{ pageArray }}</a>
 				</li>
 			</ul>
 		</div>

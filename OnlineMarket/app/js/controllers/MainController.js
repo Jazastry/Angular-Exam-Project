@@ -1,14 +1,14 @@
-app.controller('MainController', function($scope, $http, $promise, adsRequester){	
+app.controller('MainController', function($scope, $http, adsRequester){	
 	var currentTownId = undefined;
 	var currentCategoryId = undefined;
 	var currentPage = 1;
 	var pagesize = 2;
 	var paginationLength = 3;
 	var ads = adsRequester.getAll('ads', currentTownId, currentCategoryId, 1, 2);
-	var pages = adsRequester.getAll('ads', undefined, undefined, 1, 100)
-		.$promise.then(function(ads){
-			$scope.pages = ads.numPages;
-	});
+	// var pages = adsRequester.getAll('ads', undefined, undefined, 1, 100)
+	// 	.$promise.then(function(ads){
+	// 		$scope.pages = ads.numPages;
+	// });
 
 
 	var assignFilterVal = function(categoryId, townId){
@@ -34,41 +34,53 @@ app.controller('MainController', function($scope, $http, $promise, adsRequester)
 		return town;
 	};
 
-	var updateAds = function(category, town, currentPage, pagesize, numPages){	
+	var updateAds = function(category, town, currentPage, pagesize, numPages, pagCase){	
 	//              function getAllAds(item, townid, categoryid, currentPage, pagesize)	
 		ads = adsRequester.getAll('ads', town, category, currentPage, pagesize);
 		$scope.ads = ads;
 		$scope.numPages = numPages;
 		$scope.currentPage = currentPage;
+		if (pagCase !== undefined) {
+			updatePagination(pagCase, numPages);
+		}
 	};
 
-	var updatePagination = function (selectedPage, numPages){
-		var pageArray = [1];
+	var updatePagination = function ( paginationCase, numPages){
+		var pageArray = [];
 		var length = 3;
-		var start = 1;
-		var end = start + length;
-		console.log('length-'+length+';start-'+start+';end'+end);
-		console.log();
-		console.log(pageArray);
-		console.log(numPages);
-		if ((numPages <= length)) {
-			start = 1;
-			end = start + numPages;
-		} else if ((selectedPage > pageArray[pageArray.length - 1]) &&
-				  (numPages > (pageArray[pageArray.length - 1])) &&
-				  (numPages >= (pageArray[pageArray.length] + length))) {
-			start = $scope.currentPage + 1;
-			end = start + length;
-		} else if ((selectedPage > pageArray[pageArray.length - 1]) &&
-				  (numPages > (pageArray[pageArray.length - 1])) &&
-				  (numPages < (pageArray[pageArray.length] + length))) {
-			start = $scope.currentPage + 1;
-			end = start + numPages;
-		} else if () {
-			
+		var start;
+		var end;
+		switch(paginationCase) {
+			case 0:
+				start = 1;
+				if (numPages < length) {
+					end = numPages;					
+				} else {
+					end = start + length;
+				}
+				pageArray = _.range(start, end);
+				break;
+			case 1:
+				start = $scope.pageArray.length + 1;
+				if ($scope.numPages < $scope.pageArray.length + length) {
+					end = $scope.numPages + 1;
+				} else if ($scope.numPages >= $scope.pageArray.length + length) {
+					end = start + length;
+				}
+
+				pageArray = _.range(start, end);
+				$scope.pageArray = pageArray;
+				break;
+			case -1:
+				
+
+				break;					
+			default:
+				break;		
 		}
-		pageArray = _.range(start, end);
-		return pageArray;
+
+		$scope.pageArray = pageArray;
+		console.log($scope.pageArray);
 	};
 
 	var numbToPageArray = function (number) {
@@ -80,14 +92,15 @@ app.controller('MainController', function($scope, $http, $promise, adsRequester)
 		return arr;
 	};
 
+	$scope.ads = ads;
+	$scope.pageArray;
 	$scope.updatePagination = updatePagination;
 	$scope.currentPageName = 'Home';
 	$scope.currentPage = currentPage;
 	$scope.pagesize = pagesize;
 	$scope.updateAds = updateAds;
 	$scope.currentTown = currentTownId;
-	$scope.currentCategory = currentCategoryId;
-	$scope.ads = ads;	
+	$scope.currentCategory = currentCategoryId;	
 	$scope.numPages = ads.numPages;
 	$scope.towns = adsRequester.getArray('towns');
 	$scope.categories = adsRequester.getArray('categories');

@@ -1,3 +1,5 @@
-app.controller('RegisterController', ['$scope', function(){
+app.controller('RegisterController', 
+	['$scope', 'townsRequester', function($scope, townsRequester){
 	$scope.currentPageName = 'Register';
+	$scope.towns = townsRequester.getAllTowns();
 }]);

@@ -7,11 +7,6 @@ app.controller('HomeController',
 	var pagesize = 2;
 	var paginationLength = 3;
 	var ads = adsRequester.getAll('ads', currentTownId, currentCategoryId, 1, 2);
-	// var pages = adsRequester.getAll('ads', undefined, undefined, 1, 100)
-	// 	.$promise.then(function(ads){
-	// 		$scope.pages = ads.numPages;
-	// });
-
 
 	var assignFilterVal = function(categoryId, townId){
 		if (categoryId !== undefined) {
@@ -128,5 +123,3 @@ app.controller('HomeController',
 	$scope.townId = undefined;
 	$scope.assignFilterVal = assignFilterVal;
 }]);
-
-// GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}

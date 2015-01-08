@@ -1,7 +1,7 @@
-app.factory('adsRequester', function($resource){
+app.factory('adsRequester', ['$resource', 'baseServiceUrl', function($resource, baseServiceUrl){
 	// $resource(url, [paramDefaults], [actions], options)
 	var ads = $resource(
-		'http://localhost:1337/api/:item',
+		baseServiceUrl + ':item',
 		{item:'@item', townid:'@townid', categoryid:'@categoryid', startpage:'@startpage', pagesize:'@pagesize'},
 		{get: {method: 'GET'},
 		 getArray: {method: 'GET', isArray:true}
@@ -45,4 +45,4 @@ app.factory('adsRequester', function($resource){
 		edit: editAd,
 		delete: deleteAd
 	};
-});
+}]);

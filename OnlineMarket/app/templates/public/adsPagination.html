@@ -1,0 +1,22 @@
+<div class="col-lg-12">
+	<div class="bs-component text-center">
+		<ul class="pagination" ng-init="updatePagination(0, ads.numPages)">
+			<li class="pagPrevious">
+				<a href="" ng-click=" prevDisabled || updateAds(currentCategory, currentTown, 1, pagesize)">First</a>
+			</li>
+			<li class="pagPrevious">
+			                        <!-- function(category, town, startpage ,pagesize) -->
+				<a href="" ng-click=" prevDisabled || updateAds(currentCategory, currentTown, pageArray[pageArray.length-1] + 1, pagesize, ads.numPages, -1)">«</a>
+			</li>
+			<li ng-repeat="page in pageArray" ng-click="updateAds(currentCategory, currentTown, page, pagesize, ads.numPages, undefined)">
+				<a href="" >{{ page }}</a>
+			</li>
+			<li class="pagNext" ng-click="updateAds(currentCategory, currentTown, pageArray[pageArray.length-1] + 1, pagesize, ads.numPages, 1)">
+				<a href="">»</a>
+			</li>
+			<li class="pagNext">
+				<a href="">Last {{ pageArray }}</a>
+			</li>
+		</ul>
+	</div>
+</div>

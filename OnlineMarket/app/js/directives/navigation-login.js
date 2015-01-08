@@ -1,4 +1,4 @@
-app.directive('navigationPublic', function(){
+app.directive('navigationLogin', function(){
 	return {
 		//controller: 'HomeController',
 		restrict: 'E',

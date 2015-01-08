@@ -1,15 +1,9 @@
 app.factory('userRequester', ['$resource', 'baseServiceUrl', function($resource, baseServiceUrl){
 
-	var user = $resource(
-		baseServiceUrl + 'user/:item',
-		{item:'@item',user:'@user'},
-		{get: {method: 'GET'},
-		 getArray: {method: 'GET', isArray:true}
-		} 
-	);
+	var baseUrl = baseServiceUrl + 'user/';
 
 	function register(user) {
-		return user.post({item:'register'},{user:user});
+		return $resource(baseUrl + 'register').save(user);
 	}
 
 	function login(user) {

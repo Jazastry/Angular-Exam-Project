@@ -53,17 +53,22 @@ app.controller('MainController', function($scope, $http, adsRequester){
 		switch(paginationCase) {
 			case 0:
 				start = 1;
-				if (numPages < length) {
-					end = numPages;					
+				if (numPages <= length) {
+					end = numPages;	
+					angular.element('#pagNext').addClass('disabled');
+					$scope.nextDisabled = true;				
 				} else {
 					end = start + length;
 				}
 				pageArray = _.range(start, end);
+				$scope.pageArray = pageArray;
 				break;
 			case 1:
 				start = $scope.pageArray.length + 1;
-				if ($scope.numPages < $scope.pageArray.length + length) {
+				if ($scope.numPages <= $scope.pageArray.length + length) {
 					end = $scope.numPages + 1;
+					angular.element('.pagNext').addClass('disabled');
+					$scope.nextDisabled = true;
 				} else if ($scope.numPages >= $scope.pageArray.length + length) {
 					end = start + length;
 				}
@@ -72,15 +77,24 @@ app.controller('MainController', function($scope, $http, adsRequester){
 				$scope.pageArray = pageArray;
 				break;
 			case -1:
-				
+				end = $scope.pageArray[0];
+				if (($scope.pageArray[0] - length) <= 0) {
+					start = 1;
+				} else {
+					start = $scope.pageArray[0] - length;
+				}
 
+				pageArray = _.range(start, end);
+				$scope.pageArray = pageArray;
 				break;					
 			default:
 				break;		
 		}
-
-		$scope.pageArray = pageArray;
 		console.log($scope.pageArray);
+	};
+
+	var isDisabled = function(){
+
 	};
 
 	var numbToPageArray = function (number) {
@@ -101,7 +115,6 @@ app.controller('MainController', function($scope, $http, adsRequester){
 	$scope.updateAds = updateAds;
 	$scope.currentTown = currentTownId;
 	$scope.currentCategory = currentCategoryId;	
-	$scope.numPages = ads.numPages;
 	$scope.towns = adsRequester.getArray('towns');
 	$scope.categories = adsRequester.getArray('categories');
 	$scope.townFilter = townFilter;

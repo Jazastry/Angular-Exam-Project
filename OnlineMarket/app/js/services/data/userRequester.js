@@ -1,9 +1,15 @@
-app.factory('userRequester', ['$resource', 'baseServiceUrl', function($resource, baseServiceUrl){
+app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
+			 function($resource, baseServiceUrl, authentication){
 
 	var baseUrl = baseServiceUrl + 'user/';
 
 	function register(user) {
-		return $resource(baseUrl + 'register').save(user);
+		return $resource(baseUrl + 'register')
+			.save(user)
+			.promise
+			.then(function(data){
+				authentication.saveUser(data);
+			});
 	}
 
 	function login(user) {

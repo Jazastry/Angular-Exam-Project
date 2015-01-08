@@ -1,6 +1,6 @@
-var app = angular.module('app', ['ngResource', 'ngRoute']);
+var app = angular.module('app', ['ngResource', 'ngRoute', 'LocalStorageModule']);
 app.constant('baseServiceUrl', 'http://localhost:1337/api/');
-app.config(function($routeProvider) {
+app.config(['$routeProvider', 'localStorageServiceProvider',function($routeProvider, localStorageServiceProvider) {
 	$routeProvider.when('/', {
 		templateUrl: 'templates/publicHome.html',
 		controller: 'HomeController'
@@ -16,7 +16,8 @@ app.config(function($routeProvider) {
 	$routeProvider.otherwise({
 		redirectTo: '/'
 	});	
-});
+	localStorageServiceProvider.setStorageType('localStorage');
+}]);
 
 
 

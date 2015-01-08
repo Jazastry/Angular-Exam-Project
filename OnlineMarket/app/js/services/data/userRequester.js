@@ -6,9 +6,9 @@ app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
 	function register(user) {
 		return $resource(baseUrl + 'register')
 			.save(user)
-			.promise
+			.$promise
 			.then(function(data){
-				authentication.saveUser(data);
+				authentication.saveUser(angular.toJson(data));				
 			});
 	}
 
@@ -25,4 +25,4 @@ app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
 		login: login,
 		logout: logout
 	};
-}])
+}]);

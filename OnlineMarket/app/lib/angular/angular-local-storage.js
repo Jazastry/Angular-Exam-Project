@@ -1,7 +1,30 @@
+/**
+* An Angular module that gives you access to the browsers local storage
+* @version v0.1.5 - 2014-11-04
+* @link https://github.com/grevory/angular-local-storage
+* @author grevory <greg@gregpike.ca>
+* @license MIT License, http://www.opensource.org/licenses/MIT
+*/
+(function ( window, angular, undefined ) {
+/*jshint globalstrict:true*/
+'use strict';
+var isDefined = angular.isDefined,
+isUndefined = angular.isUndefined,
+isNumber = angular.isNumber,
+isObject = angular.isObject,
+isArray = angular.isArray,
+extend = angular.extend,
+toJson = angular.toJson,
+fromJson = angular.fromJson;
+// Test if string is only contains numbers
+// e.g '1' => true, "'1'" => true
+function isStringNumber(num) {
+return /^-?\d+\.?\d*$/.test(num.replace(/["']/g, ''));
+}
 var angularLocalStorage = angular.module('LocalStorageModule', []);
 angularLocalStorage.provider('localStorageService', function() {
 // You should set a prefix to avoid overwriting any local storage variables from the rest of your app
-// e.g. localStorageServiceProvider.setPrefix('yourAppName');
+// e.g. localStorageServiceProvider.setPrefix('youAppName');
 // With provider you can use config as this:
 // myApp.config(function (localStorageServiceProvider) {
 // localStorageServiceProvider.prefix = 'yourAppName';
@@ -367,3 +390,4 @@ clearAll: clearAllFromCookies
 };
 }];
 });
+})( window, window.angular );

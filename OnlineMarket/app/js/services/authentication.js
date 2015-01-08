@@ -1,17 +1,18 @@
-app.factory('authentication', ['localStorageServiceProvider', function(localStorageServiceProvider){
+app.factory('authentication', ['localStorageService', function(localStorageService){
 
 	var key = 'user';
 
-	function saveUserData (data) {
-		localStorageServiceProvider.set(key,data);
+	function saveUserData (val) {
+		localStorageService.set(key,val);
+		console.log(localStorageService.get(key));
 	}
 
-	function saveUserData (data) {
-		localStorageServiceProvider.get(key);
+	function getUserData() {
+		return localStorageService.get(key);
 	}
 
 	return {
 		saveUser: saveUserData,
 		getUser: getUserData
 	};
-}])
+}]);

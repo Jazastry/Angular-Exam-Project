@@ -6,12 +6,12 @@
 			</li>
 			<li class="pagPrevious">
 			                        <!-- function(category, town, startpage ,pagesize) -->
-				<a href="" ng-click=" prevDisabled || updateAds(currentCategory, currentTown, pageArray[pageArray.length-1] + 1, pagesize, ads.numPages, -1)">«</a>
+				<a href="" ng-click=" prevDisabled || updateAds(currentCategory, currentTown, pageArray[pageArray.length-1] + 1, pagesize, -1)">«</a>
 			</li>
-			<li ng-repeat="page in pageArray" ng-click="updateAds(currentCategory, currentTown, page, pagesize, ads.numPages, undefined)">
+			<li ng-repeat="page in pageArray" ng-click="updateAds(currentCategory, currentTown, page, pagesize, undefined)">
 				<a href="" >{{ page }}</a>
 			</li>
-			<li class="pagNext" ng-click="updateAds(currentCategory, currentTown, pageArray[pageArray.length-1] + 1, pagesize, ads.numPages, 1)">
+			<li class="pagNext" ng-click="updateAds(currentCategory, currentTown, pageArray[pageArray.length-1] + 1, pagesize, 1)">
 				<a href="">»</a>
 			</li>
 			<li class="pagNext">

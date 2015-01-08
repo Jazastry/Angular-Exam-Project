@@ -1,4 +1,6 @@
-app.controller('HomeController', function($scope, $http, adsRequester, townsRequester){	
+app.controller('HomeController', 
+	['$scope', '$http', 'adsRequester', 'townsRequester', 'categoriesRequester' ,
+ 			function($scope, $http, adsRequester, townsRequester, categoriesRequester){	
 	var currentTownId = undefined;
 	var currentCategoryId = undefined;
 	var currentPage = 1;
@@ -34,18 +36,22 @@ app.controller('HomeController', function($scope, $http, adsRequester, townsRequ
 		return town;
 	};
 
-	var updateAds = function(category, town, currentPage, pagesize, numPages, pagCase){	
+	var updateAds = function(category, town, currentPage, pagesize, pgeNumb){	
 	//              function getAllAds(item, townid, categoryid, currentPage, pagesize)	
-		ads = adsRequester.getAll('ads', town, category, currentPage, pagesize);
-		$scope.ads = ads;
-		$scope.numPages = numPages;
+		adsRequester.getAll('ads', town, category, currentPage, pagesize)
+			.$promise
+			.then(function(data){
+				$scope.ads = data;
+				$scope.numPages = data.numPages;
+			});
+		
 		$scope.currentPage = currentPage;
-		if (pagCase !== undefined) {
-			updatePagination(pagCase, numPages);
+		if (pgeNumb !== undefined) {
+			updatePagination(pgeNumb);
 		}
 	};
 
-	var updatePagination = function ( paginationCase, numPages){
+	var updatePagination = function ( paginationCase){
 		var pageArray = [];
 		var length = 3;
 		var start;
@@ -53,8 +59,8 @@ app.controller('HomeController', function($scope, $http, adsRequester, townsRequ
 		switch(paginationCase) {
 			case 0:
 				start = 1;
-				if (numPages <= length) {
-					end = numPages;	
+				if ($scope.numPages <= length) {
+					end = $scope.numPages;	
 					angular.element('#pagNext').addClass('disabled');
 					$scope.nextDisabled = true;				
 				} else {
@@ -115,12 +121,12 @@ app.controller('HomeController', function($scope, $http, adsRequester, townsRequ
 	$scope.updateAds = updateAds;
 	$scope.currentTown = currentTownId;
 	$scope.currentCategory = currentCategoryId;	
-	$scope.towns = townsRequester.getAllTowns('towns');
-	$scope.categories = adsRequester.getArray('categories');
+	$scope.towns = townsRequester.getAllTowns();
+	$scope.categories = categoriesRequester.getAllCategories();
 	$scope.townFilter = townFilter;
 	$scope.categoryId = undefined;
 	$scope.townId = undefined;
 	$scope.assignFilterVal = assignFilterVal;
-});
+}]);
 
 // GET api/Ads?CategoryId={CategoryId}&TownId={TownId}&StartPage={StartPage}&PageSize={PageSize}

@@ -1,4 +1,4 @@
-app.controller('HomeController', function($scope, $http, adsRequester){	
+app.controller('HomeController', function($scope, $http, adsRequester, townsRequester){	
 	var currentTownId = undefined;
 	var currentCategoryId = undefined;
 	var currentPage = 1;
@@ -115,7 +115,7 @@ app.controller('HomeController', function($scope, $http, adsRequester){
 	$scope.updateAds = updateAds;
 	$scope.currentTown = currentTownId;
 	$scope.currentCategory = currentCategoryId;	
-	$scope.towns = adsRequester.getArray('towns');
+	$scope.towns = townsRequester.getAllTowns('towns');
 	$scope.categories = adsRequester.getArray('categories');
 	$scope.townFilter = townFilter;
 	$scope.categoryId = undefined;

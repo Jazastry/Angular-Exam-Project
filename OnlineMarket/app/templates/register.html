@@ -27,7 +27,7 @@
         <div class="form-group">              
             <div class="col-lg-10">
               <label for="inputConfirmPassword" class="control-label">Confirm Password</label>
-              <input class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" type="password">
+              <input class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" type="password" ng-model="user.confirmPassword">
             </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
           <div class="form-group">            
             <div class="col-lg-10">
               <label for="select" class="control-label">Town</label>
-              <select class="form-control" id="select" ng-model="town">
+              <select class="form-control" id="select" ng-model="user.townId">
                 <option value="">Anywhere</option>
                 <option value="{{town.id}}" data-toggle="tab" ng-repeat="town in towns">        
                     {{ town.name }}                                 
@@ -71,7 +71,7 @@
       <div class="col-lg-6">
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary" ng-click="register(user)">Register</button>
           </div>
         </div>
       </div>

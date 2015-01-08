@@ -1,4 +1,4 @@
-app.controller('MainController', function($scope, $http, adsRequester){	
+app.controller('HomeController', function($scope, $http, adsRequester){	
 	var currentTownId = undefined;
 	var currentCategoryId = undefined;
 	var currentPage = 1;

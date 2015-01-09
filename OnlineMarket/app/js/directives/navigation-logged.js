@@ -1,8 +1,8 @@
-app.directive('navigationLogin', function(){
+app.directive('navigationLogged', function(){
 	return {
-		//controller: 'HomeController',
+		controller: 'LoggedInNavController',
 		restrict: 'E',
-		templateUrl: 'templates/public/navigationPublic.html',
+		templateUrl: 'templates/public/navigationLogged.html',
 		replace: true
 	};
 });

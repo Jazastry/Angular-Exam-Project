@@ -4,17 +4,13 @@ app.factory('adsRequester', ['$resource', 'baseServiceUrl', function($resource, 
 		baseServiceUrl + ':item',
 		{item:'@item', townid:'@townid', categoryid:'@categoryid', startpage:'@startpage', pagesize:'@pagesize'},
 		{get: {method: 'GET'},
-		 getArray: {method: 'GET', isArray:true}
+		 getArray: {method: 'GET', isArray:true},
+		 update: {method: 'PUT'}
 		} 
 	);
 
-	var Ads = (function(){
-		function Ads(){
-			
-		}
-	});
-	function getAllAds(item, townid, categoryid, startpage, pagesize) {
-		return ads.get({item:item}, {townid:townid, categoryid:categoryid, startpage:startpage, pagesize:pagesize});
+	function getPublicAds (townid, categoryid, startpage, pagesize) {
+		return ads.get({item:'ads'}, {townid:townid, categoryid:categoryid, startpage:startpage, pagesize:pagesize});
 	}
 
 	function createNewAd(ad) {
@@ -33,13 +29,8 @@ app.factory('adsRequester', ['$resource', 'baseServiceUrl', function($resource, 
 		return ads.delete({id: id});
 	}
 
-	function arrayGetAll(item) {
-		return ads.getArray({item:item});
-	}
-
 	return {
-		getArray: arrayGetAll,
-		getAll: getAllAds,
+		getPublicAds: getPublicAds,
 		create: createNewAd,
 		getById: getAdById,
 		edit: editAd,

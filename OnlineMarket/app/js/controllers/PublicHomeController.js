@@ -1,12 +1,10 @@
-app.controller('HomeController', 
+app.controller('PublicHomeController', 
 	['$scope', '$http', 'adsRequester', 'townsRequester', 'categoriesRequester' ,
  			function($scope, $http, adsRequester, townsRequester, categoriesRequester){	
-	var currentTownId = undefined;
-	var currentCategoryId = undefined;
 	var currentPage = 1;
 	var pagesize = 2;
-	var paginationLength = 3;
-	var ads = adsRequester.getAll('ads', currentTownId, currentCategoryId, 1, 2);
+	// var paginationLength = 3;
+	var ads = adsRequester.getPublicAds(undefined, undefined, currentPage, pagesize);
 
 	var assignFilterVal = function(categoryId, townId){
 		if (categoryId !== undefined) {
@@ -33,7 +31,7 @@ app.controller('HomeController',
 
 	var updateAds = function(category, town, currentPage, pagesize, pgeNumb){	
 	//              function getAllAds(item, townid, categoryid, currentPage, pagesize)	
-		adsRequester.getAll('ads', town, category, currentPage, pagesize)
+		adsRequester.getPublicAds(town, category, currentPage, pagesize)
 			.$promise
 			.then(function(data){
 				$scope.ads = data;
@@ -114,8 +112,8 @@ app.controller('HomeController',
 	$scope.currentPage = currentPage;
 	$scope.pagesize = pagesize;
 	$scope.updateAds = updateAds;
-	$scope.currentTown = currentTownId;
-	$scope.currentCategory = currentCategoryId;	
+	$scope.currentTown;
+	$scope.currentCategory;	
 	$scope.towns = townsRequester.getAllTowns();
 	$scope.categories = categoriesRequester.getAllCategories();
 	$scope.townFilter = townFilter;

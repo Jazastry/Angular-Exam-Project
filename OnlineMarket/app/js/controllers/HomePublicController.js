@@ -1,10 +1,7 @@
-app.controller('PublicHomeController', 
-	['$scope', '$http', 'adsRequester', 'townsRequester', 'categoriesRequester' ,
- 			function($scope, $http, adsRequester, townsRequester, categoriesRequester){	
+app.controller('HomePublicController', 
+	['$scope', '$http', 'adsRequester',	function($scope, $http, adsRequester){	
 	var currentPage = 1;
 	var pagesize = 2;
-	// var paginationLength = 3;
-	var ads = adsRequester.getPublicAds(undefined, undefined, currentPage, pagesize);
 
 	var assignFilterVal = function(categoryId, townId){
 		if (categoryId !== undefined) {
@@ -30,7 +27,7 @@ app.controller('PublicHomeController',
 	};
 
 	var updateAds = function(category, town, currentPage, pagesize, pgeNumb){	
-	//              function getAllAds(item, townid, categoryid, currentPage, pagesize)	
+		// function getAllAds(item, townid, categoryid, currentPage, pagesize)	
 		adsRequester.getPublicAds(town, category, currentPage, pagesize)
 			.$promise
 			.then(function(data){
@@ -92,30 +89,13 @@ app.controller('PublicHomeController',
 		console.log($scope.pageArray);
 	};
 
-	var isDisabled = function(){
-
-	};
-
-	var numbToPageArray = function (number) {
-		var arr = [];
-		for (var i = 0; i < number; i++) {
-			arr[i] = i+1;
-		}
-
-		return arr;
-	};
-
-	$scope.ads = ads;
+	$scope.ready = false;
 	$scope.pageArray;
 	$scope.updatePagination = updatePagination;
 	$scope.currentPageName = 'Home';
 	$scope.currentPage = currentPage;
 	$scope.pagesize = pagesize;
-	$scope.updateAds = updateAds;
-	$scope.currentTown;
-	$scope.currentCategory;	
-	$scope.towns = townsRequester.getAllTowns();
-	$scope.categories = categoriesRequester.getAllCategories();
+	$scope.updateAds = updateAds;		
 	$scope.townFilter = townFilter;
 	$scope.categoryId = undefined;
 	$scope.townId = undefined;

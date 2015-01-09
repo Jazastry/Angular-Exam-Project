@@ -1,2 +1,3 @@
-app.controller('PaginationController', function($scope){	
+app.controller('PaginationController', function($scope){
+		
 });

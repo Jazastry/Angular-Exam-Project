@@ -13,15 +13,14 @@ app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
 	}
 
 	function login(user) {
-		return $resource(baseUrl + 'login')
-			.save(user)
-			.$promise
+		var resource = $resource(baseUrl + 'login')
+			.save(user);
+		resource.$promise
 			.then(function(data){
 				authentication.saveUser(data);
-				authentication.isAdmin();
-			}, function(error){
-				console.log(error);
 			});
+
+		return resource;	
 	}
 
 	function logout () {

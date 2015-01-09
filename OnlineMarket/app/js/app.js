@@ -4,7 +4,7 @@ app.config(['$routeProvider', 'localStorageServiceProvider',
 				function($routeProvider, localStorageServiceProvider) {
 	$routeProvider.when('/', {
 		templateUrl: 'templates/publicHome.html',
-		controller: 'PublicHomeController'
+		controller: 'HomePublicController'
 	});
 	$routeProvider.when('/login', {
 		templateUrl: 'templates/login.html',

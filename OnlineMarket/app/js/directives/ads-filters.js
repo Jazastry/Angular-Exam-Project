@@ -1,6 +1,6 @@
 app.directive('adsFilters', function () {
 	return {
-		//controller: 'HomeController',
+		controller: 'AdsFiltersController',
 		restrict: 'E',
 		templateUrl: 'templates/public/adsFilters.html',
 		replace: true

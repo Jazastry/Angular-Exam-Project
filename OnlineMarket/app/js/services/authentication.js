@@ -3,7 +3,8 @@ app.factory('authentication', ['localStorageService', function(localStorageServi
 	var key = 'user';
 
 	function saveUserData (val) {
-		localStorageService.set(key,val);
+		var data = angular.toJson(val);
+		localStorageService.set(key,data);
 		console.log(localStorageService.get(key));
 	}
 
@@ -11,8 +12,31 @@ app.factory('authentication', ['localStorageService', function(localStorageServi
 		return localStorageService.get(key);
 	}
 
+	function getHeaders () {
+		var headers = {};
+		var userData = getUserData();
+		if (userData) {
+			headers.Authorization = 'Bearer ' + userData.access_token;
+		}
+
+		return headers;
+	}
+
+	function removeUserData() {
+		return localStorageService.remove(key); // returns true if succeed
+	}
+
+	function isUserAdmin() {		
+		var isAdmin = getUserData().isAdmin;
+
+		return isAdmin;
+	}
+
 	return {
 		saveUser: saveUserData,
-		getUser: getUserData
+		getUser: getUserData,
+		removeUser: removeUserData,
+		getHeaders: getHeaders,
+		isAdmin: isUserAdmin
 	};
 }]);

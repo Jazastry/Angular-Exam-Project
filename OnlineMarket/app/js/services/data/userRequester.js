@@ -8,16 +8,29 @@ app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
 			.save(user)
 			.$promise
 			.then(function(data){
-				authentication.saveUser(angular.toJson(data));				
+				authentication.saveUser(data);
 			});
 	}
 
 	function login(user) {
-		// body...
+		return $resource(baseUrl + 'login')
+			.save(user)
+			.$promise
+			.then(function(data){
+				authentication.saveUser(data);
+				authentication.isAdmin();
+			}, function(error){
+				console.log(error);
+			});
 	}
 
 	function logout () {
-		// body...
+		return $resource(baseUrl + 'logout')
+			.save(user)
+			.$promise
+			.then(function(data){
+				authentication.removeUser();
+			});
 	}
 
 	return {

@@ -5,7 +5,6 @@ app.factory('authentication', ['localStorageService', function(localStorageServi
 	function saveUserData (val) {
 		var data = angular.toJson(val);
 		localStorageService.set(key,data);
-		console.log(localStorageService.get(key));
 	}
 
 	function getUserData() {
@@ -32,11 +31,16 @@ app.factory('authentication', ['localStorageService', function(localStorageServi
 		return isAdmin;
 	}
 
+	function isLogedIn () {
+		return !!getUserData();
+	}
+
 	return {
 		saveUser: saveUserData,
 		getUser: getUserData,
 		removeUser: removeUserData,
 		getHeaders: getHeaders,
-		isAdmin: isUserAdmin
+		isAdmin: isUserAdmin,
+		isLogedIn: isLogedIn
 	};
 }]);

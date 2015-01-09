@@ -1,6 +1,7 @@
 <div class="bs-docs-section clearfix">
 	<div class="row">
-		<navigation-public></navigation-public>
+		<navigation-public ng-if="!isLoggedIn"></navigation-public>
+		<navigation-logged ng-if="isLoggedIn"></navigation-logged>
 	</div>
 </div>
 <div class="bs-docs-section clearfix">

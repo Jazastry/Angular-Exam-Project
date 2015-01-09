@@ -11,7 +11,7 @@ app.factory('adsUpdater', ['$scope', 'adsRequester', function($scope, adsRequest
 		
 		$scope.currentPage = currentPage;
 		if (pgeNumb !== undefined) {
-			updatePagination(pgeNumb);
+			$scope.updatePagination(pgeNumb);
 		}
 	}
 

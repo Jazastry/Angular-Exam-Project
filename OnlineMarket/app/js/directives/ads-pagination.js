@@ -1,6 +1,6 @@
 app.directive('adsPagination', function () {
 	return {
-		controller: 'PaginationController',
+		controller: 'PaginationCtrl',
 		restrict: 'E',
 		templateUrl: 'templates/public/adsPagination.html',
 		replace: true

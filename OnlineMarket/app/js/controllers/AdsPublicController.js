@@ -1,19 +1,18 @@
-app.controller('AdsPublicController', ['$scope', '$rootScope', 'adsRequester', 'filter', function($scope, $rootScope, adsRequester, filter){
-	$scope.ready = false;
+app.controller('AdsPublicController', ['$scope', 'adsRequester', 'filter', function($scope, adsRequester, filter){
 	function updateAds() {
-		console.log($scope.pageFilter);
+		//$scope.ready = false;
 		adsRequester.getPublicAds($scope.pageFilter)
 			.$promise
 			.then(function (data) {
 				$scope.ready = true;
 				$scope.ads = data;
+
+				console.log(data);
 			});
 	}
-
-	updateAds();
-	$scope.pageFilter = {};
+	$scope.ready = false;
+	$scope.pageFilter = filter.getFilterParams();
 	$scope.$watch('pageFilter', function(){
 		updateAds();
-
 	}, true);
 }]);

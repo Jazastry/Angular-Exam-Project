@@ -1,6 +1,7 @@
 app.factory('filter', function(){
 
 	var filterParams = {};
+	filterParams.pageSize = 2;
 
 	function updateTown(town) {
 		town ? filterParams.townId = town : delete filterParams.townId;
@@ -12,7 +13,7 @@ app.factory('filter', function(){
 	}
 
 	function updatePage(page) {
-		filterParams.startPage = page;
+		page ? filterParams.startPage = page : delete filterParams.startPage;
 	}
 
 	function getFilterParams() {
@@ -22,7 +23,7 @@ app.factory('filter', function(){
 	return {
 		updateTown: updateTown,
 		updateCategory: updateCategory,
-		updatePage: updatePage,
+		updateStartPage: updatePage,
 		getFilterParams: getFilterParams		 
 	};
 });

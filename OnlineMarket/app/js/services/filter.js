@@ -3,11 +3,12 @@ app.factory('filter', function(){
 	var filterParams = {};
 
 	function updateTown(town) {
-		filterParams.townId = town.id;
+		town ? filterParams.townId = town : delete filterParams.townId;
 	}
 
 	function updateCategory(category) {
-		filterParams.categoryId = category.id;
+
+		category ? filterParams.categoryId = category : delete filterParams.categoryId;	
 	}
 
 	function updatePage(page) {

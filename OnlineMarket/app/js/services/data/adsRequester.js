@@ -1,16 +1,16 @@
 app.factory('adsRequester', ['$resource', 'baseServiceUrl', function($resource, baseServiceUrl){
 	// $resource(url, [paramDefaults], [actions], options)
 	var ads = $resource(
-		baseServiceUrl + ':item',
-		{item:'@item', townid:'@townid', categoryid:'@categoryid', startpage:'@startpage', pagesize:'@pagesize'},
+		baseServiceUrl + 'ads',
+		{},
 		{get: {method: 'GET'},
 		 getArray: {method: 'GET', isArray:true},
 		 update: {method: 'PUT'}
 		} 
 	);
 
-	function getPublicAds (townid, categoryid, startpage, pagesize) {
-		return ads.get({item:'ads'}, {townid:townid, categoryid:categoryid, startpage:startpage, pagesize:pagesize});
+	function getPublicAds (filter) {
+		return ads.get(filter);
 	}
 
 	function createNewAd(ad) {

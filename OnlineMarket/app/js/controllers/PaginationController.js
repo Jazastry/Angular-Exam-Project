@@ -1,4 +1,4 @@
-app.controller('PaginationController', ['$scope', function($scope){
+app.controller('PaginationController', ['$scope', '$rootScope', 'filter', function($scope, $rootScope, filter){
 	var updatePagination = function (paginationCase){
 		var pageArray = [];
 		var length = 3;
@@ -48,4 +48,9 @@ app.controller('PaginationController', ['$scope', function($scope){
 	};
 
 	$scope.updatePagination = updatePagination;
+	$scope.pageChanged = function(page){
+		console.log(page);
+		filter.updatePage(parseInt(page));
+		$scope.pageFilter = filter.getFilterParams();		
+	};
 }]);

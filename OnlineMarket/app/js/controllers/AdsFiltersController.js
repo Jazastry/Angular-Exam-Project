@@ -1,6 +1,6 @@
 app.controller('AdsFiltersController',
-	 ['$scope', 'townsRequester', 'categoriesRequester', 'adsRequester',
-	 	 function($scope, townsRequester, categoriesRequester, adsRequester){
+	 ['$scope', '$rootScope', 'townsRequester', 'categoriesRequester', 'adsRequester', 'filter',
+	 	 function($scope, $rootScope, townsRequester, categoriesRequester, adsRequester, filter){
 
 	function updateAds(category, town, currentPage, pagesize, pgeNumb){	
 		// function getAllAds(item, townid, categoryid, currentPage, pagesize)	
@@ -17,9 +17,22 @@ app.controller('AdsFiltersController',
 		}
 	}
 
+	$scope.categoryChanged = function(category){
+		filter.updateCategory(parseInt(category));
+		$scope.pageFilter = filter.getFilterParams();
+		//console.log($scope.pageFilter);
+	};
+
+	$scope.townChanged = function(town){
+		filter.updateTown(parseInt(town));
+		$scope.pageFilter = filter.getFilterParams();
+		//console.log($scope.pageFilter);
+	};
+
 	$scope.updateAds = updateAds;
 	$scope.towns = townsRequester.getAllTowns();
 	$scope.categories = categoriesRequester.getAllCategories();
+	
 	$scope.currentTown;
 	$scope.currentCategory;
 }]);

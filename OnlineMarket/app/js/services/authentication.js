@@ -3,7 +3,7 @@ app.factory('authentication', ['localStorageService', function(localStorageServi
 	var key = 'user';
 
 	function saveUserData (val) {
-		var data = angular.toJson(val);
+		var data = val;
 		localStorageService.set(key,data);
 	}
 

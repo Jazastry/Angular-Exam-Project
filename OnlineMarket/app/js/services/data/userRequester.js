@@ -4,12 +4,13 @@ app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
 	var baseUrl = baseServiceUrl + 'user/';
 
 	function register(user) {
-		return $resource(baseUrl + 'register')
-			.save(user)
-			.$promise
-			.then(function(data){
-				authentication.saveUser(data);
-			});
+		var resource = $resource(baseUrl + 'register')
+			.save(user);
+		// resource.$promise
+		// 	.then(function(data){
+		// 		authentication.saveUser(data);
+		// 	});
+		return resource;
 	}
 
 	function login(user) {

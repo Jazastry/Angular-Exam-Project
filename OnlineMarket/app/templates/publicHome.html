@@ -14,13 +14,16 @@
 			</div>
 		</div> -->
 	</div>
-	<div class="col-lg-8" ng-cloak>
-		<ads-public></ads-public>
-	</div>
-	<div class="col-lg-2" ng-cloak>
-		<ads-filters></ads-filters>
-	</div>	
-	<div class="row">
-		<ads-pagination></ads-pagination>
+
+	<div ng-if="!isLogging">
+		<div class="col-lg-8" ng-cloak>
+			<ads-public></ads-public>
+		</div>
+		<div class="col-lg-2" ng-cloak>
+			<ads-filters></ads-filters>
+		</div>	
+		<div class="row">
+			<ads-pagination></ads-pagination>
+		</div>
 	</div>
 </div>

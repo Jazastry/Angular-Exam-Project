@@ -1,6 +1,6 @@
 app.directive('navigationPublic', function(){
 	return {
-		//controller: 'HomeController',
+		controller: 'NavPublicController',
 		restrict: 'E',
 		templateUrl: 'templates/public/navigationPublic.html',
 		replace: true

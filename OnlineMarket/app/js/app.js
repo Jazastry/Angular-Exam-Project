@@ -27,7 +27,7 @@ app.config(['$routeProvider', 'localStorageServiceProvider',
 	});
 	$routeProvider.when('/user/ads', {
 		templateUrl: 'templates/user/userAds.html',
-		controller: 'UserAdsController'
+		controller: 'LoggedUserAdsController'
 	});
 	$routeProvider.otherwise({  
 		redirectTo: '/'

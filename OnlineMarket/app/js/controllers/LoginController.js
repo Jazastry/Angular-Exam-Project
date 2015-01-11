@@ -9,7 +9,7 @@ app.controller('LoginController', ['$scope', '$location','userRequester', 'authe
 		userRequester.login(user)
 			.$promise
 			.then(function (data) {
-				$location.path('/');
+				$location.path('/user/home');
 				$scope.alerts.push({type: 'success', msg: 'Logged In Successfully.'});
 			}, function(error){
 				console.log(error.data.error_description);

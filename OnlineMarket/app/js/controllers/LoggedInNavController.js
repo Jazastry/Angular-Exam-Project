@@ -2,9 +2,14 @@ app.controller('LoggedInNavController', ['$scope', 'authentication', function($s
 
 	$scope.logoutUser = function() {
 		authentication.removeUser();
+		console.log(authentication.getUser());
 	};
 
 	$scope.closeAlert = function(index) {
 		$scope.alerts.splice(index, 1);
 	};
+
+	if (authentication.isLogedIn()) {
+		$scope.userNow = authentication.getUser('user').username;
+	}
 }]);

@@ -17,7 +17,19 @@ app.config(['$routeProvider', 'localStorageServiceProvider',
 		templateUrl: 'templates/register.html',
 		controller: 'RegisterController'
 	});
-	$routeProvider.otherwise({
+	$routeProvider.when('/user/home', {
+		templateUrl: 'templates/userHome.html',
+		controller: 'HomeUserController'
+	});
+	$routeProvider.when('/user/ads/publish', {
+		templateUrl: 'templates/user/newAd.html',
+		controller: 'NewAdController'
+	});
+	$routeProvider.when('/user/ads', {
+		templateUrl: 'templates/user/userAds.html',
+		controller: 'UserAdsController'
+	});
+	$routeProvider.otherwise({  
 		redirectTo: '/'
 	});	
 	localStorageServiceProvider.setStorageType('localStorage');

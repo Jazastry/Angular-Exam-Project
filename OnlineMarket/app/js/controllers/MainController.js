@@ -1,8 +1,15 @@
-app.controller('MainController', ['$scope', 'localStorageService', function($scope, localStorageService){
+app.controller('MainController', ['$scope', '$location', 'localStorageService', 'authentication', function($scope, $location, localStorageService, authentication){
+	
 	$scope.alerts = [];
 
-	$scope.userNow = "Jazastry";
 	$scope.$watch('isLoggedIn', function(){
-		$scope.userNow = localStorageService.get('user').username;
+		if (authentication.isLogedIn()) {
+			$scope.userNow = authentication.getUser('user').username;
+		}		
 	}, true);
+
+	$scope.redirectTo = function (newLocation) {
+		console.log(newLocation);
+	    return $location.path(newLocation);
+	};
 }]);

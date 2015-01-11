@@ -1,6 +1,6 @@
 <div class="col-lg-12">
 	<div class="page-header" ng-cloak>
-		<h3 id="navbar">Ads - {{ currentPageName }}</h3>			
+		<h3 id="navbar" ng-cloak>Ads - {{ currentPageName }}</h3>			
 	</div>				
 	<div class="bs-component">
 		<div class="navbar navbar-default">
@@ -18,7 +18,7 @@
 						<a href="#/user/ads">My Ads</a>
 					</li>
 					<li>
-						<a href="#/user/publish">Publish New Ad</a>
+						<a href="#/user/ads/publish">Publish New Ad</a>
 					</li>
 					<li>
 						<a href="#/user/editProfile">Edit Profile</a>
@@ -27,13 +27,12 @@
 						<a href="#" ng-click="logoutUser()">Logout</a>
 					</li>
 				</ul>
-				<h6 class="text-right">{{ userNow }}</h6>			
+				<h6 class="text-right">{{ userNow }}</h6>		
 			</div>
 		</div>
-	</div>
-	<div class="row">	
-		<div class="col-lg-3"></div>
-		<alert class="col-lg-6" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-		<div class="col-lg-3"></div>
+	</div>	
+	<div class="col-lg-3"></div>
+	<div>
+		<alert class="col-lg-8" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 	</div>
 </div>

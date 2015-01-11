@@ -18,7 +18,6 @@ app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
 			.save(user);
 		resource.$promise
 			.then(function(data){
-				console.log(data);
 				authentication.saveUser(data);				
 			});
 

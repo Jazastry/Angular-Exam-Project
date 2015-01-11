@@ -8,7 +8,8 @@ app.factory('authentication', ['localStorageService', function(localStorageServi
 	}
 
 	function getUserData() {
-		return localStorageService.get(key);
+		var user = localStorageService.get(key);
+		return user;
 	}
 
 	function getHeaders () {

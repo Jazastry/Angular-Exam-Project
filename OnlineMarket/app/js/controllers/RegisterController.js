@@ -9,7 +9,9 @@ app.controller('RegisterController',
 			.$promise
 			.then(function (data) {
 				$scope.alerts.push({type: 'success', msg: 'User Account created. Please Logg In !'});
+				$location.path('/');
 			}, function(error){
+
 				$scope.alerts.push({type: 'danger', msg: 'Unsuccessfull Register !'});
 			});
 	};	

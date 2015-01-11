@@ -7,7 +7,6 @@ app.controller('HomePublicController',
 	};
 
 	$scope.isLoggedIn = authentication.isLogedIn();
-	$scope.isLogging = false;
 	$scope.currentPageName = 'Home';
 	$scope.categoryId = undefined;
 	$scope.townId = undefined;

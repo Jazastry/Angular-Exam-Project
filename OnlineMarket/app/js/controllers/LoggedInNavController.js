@@ -3,4 +3,8 @@ app.controller('LoggedInNavController', ['$scope', 'authentication', function($s
 	$scope.logoutUser = function() {
 		authentication.removeUser();
 	};
+
+	$scope.closeAlert = function(index) {
+		$scope.alerts.splice(index, 1);
+	};
 }]);

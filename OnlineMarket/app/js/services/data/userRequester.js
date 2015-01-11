@@ -18,10 +18,11 @@ app.factory('userRequester', ['$resource', 'baseServiceUrl', 'authentication',
 			.save(user);
 		resource.$promise
 			.then(function(data){
-				authentication.saveUser(data);
+				console.log(data);
+				authentication.saveUser(data);				
 			});
 
-		return resource;	
+		return resource;
 	}
 
 	function logout () {

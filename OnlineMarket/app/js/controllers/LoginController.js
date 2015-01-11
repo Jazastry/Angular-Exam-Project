@@ -1,10 +1,10 @@
-app.controller('LoginController', ['$scope', '$location','userRequester',function($scope, $location,userRequester){
+app.controller('LoginController', ['$scope', '$location','userRequester', 'authentication', function($scope, $location,userRequester,authentication){
 	$scope.currentPageName = 'Login';
 	$scope.redirectTo = function (newLocation) {
 		console.log(newLocation);
 	    return $location.path(newLocation);
 	};
-	//$scope.alerts.push({type: 'success', msg: 'Logged In Successfully.'});
+
 	$scope.login = function(user){
 		userRequester.login(user)
 			.$promise

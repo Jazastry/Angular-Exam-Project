@@ -1,0 +1,18 @@
+	 <header id="header">Phonebook<span>{{ currentPage }}</span></header>
+	 <message></message>
+	<!-- Login screen -->
+	<div id="login-form" class="dialog-box">
+		<h1>Login</h1>
+		<p>
+			<label for="username">Username:</label>
+			<input type="text" id="username" ng-model="user.username"/>
+		</p>
+		<p>
+			<label for="password">Password:</label>
+			<input type="password" id="password" ng-model="user.password"/>
+		</p>
+		<p class="buttons">
+			<a href="" class="button" ng-click="login(user)">Login</a>
+			<a href="#/register" class="link">Register</a>
+		<p>
+	</div>

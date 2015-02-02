@@ -1,0 +1,76 @@
+<div class="row">
+    <form class="register form-horizontal col-lg-12" name="registerForm">
+        <fieldset>
+            <legend><h2>Create a new account</h2></legend>
+            <div class="col-lg-9 form-info">
+                <div class="form-group">
+                    <label for="reg-username" class="col-lg-3 control-label">Username:</label>
+                    <div class="col-lg-9">
+                        <span class="error" ng-show="send && registerForm.userName.$error.required">Reqiured !</span>
+                        <span class="error" ng-show="send && registerForm.userName.$error.pattern">Only letters or digits, no white spaces!</span>
+                        <input type="text" class="form-control" id="reg-username" placeholder="Username" ng-model="user.username" required="required" name="userName" ng-pattern="word" ng-trim="false">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password" class="col-lg-3 control-label">Password:</label>
+                    <div class="col-lg-9">
+                        <span class="error" ng-show="send && registerForm.userPassword.$error.required">Reqiured !</span>
+                        <span class="error" ng-show="send && registerForm.userPassword.$error.pattern">Only letters or digits, no white spaces!</span>
+                        <input type="password" class="form-control" id="reg-password" placeholder="Password" ng-model="user.password" required="required" name="userPassword" ng-pattern="word" ng-trim="false">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-name" class="col-lg-3 control-label">Name:</label>
+                    <div class="col-lg-9">
+                        <span class="error" ng-show="send && registerForm.userFullName.$error.required">Reqiured !</span>
+                        <span class="error" ng-show="send && registerForm.userFullName.$error.pattern">Only letters or digits, no white spaces!</span>
+                        <input type="text" class="form-control" id="reg-name" placeholder="Name" ng-model="user.fullName" required="required" name="userFullName" ng-pattern="word" ng-trim="false">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-about" class="col-lg-3 control-label">About me:</label>
+                    <div class="col-lg-9">
+                        <textarea class="form-control" rows="3" id="reg-about" ng-model="user.about"></textarea>
+                        <span class="help-block">Tell us a little about yourself!</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Gender:</label>
+                    <div class="col-lg-9">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="gender-radio" value="male" ng-model="user.gender">Male
+                            </label>
+                            <label>
+                                <input type="radio" name="gender-radio" value="female" ng-model="user.gender">Female
+                            </label>
+                            <label>
+                                <input type="radio" name="gender-radio" value="other" ng-model="user.gender">Other
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 picture-upload">
+                <div class="form-group">
+                    <img class="thumbnail picture-preview" ng-src="image"/>
+                </div>
+                <div class="form-group">
+                    <p class="picture-name"></p>
+                    <button type="button" id="upload-file-button" class="btn btn-md btn-info">Upload</button>
+                    <input type="file" id="picture" ng-model="image"/>
+                    <p>Size limit: 128KB</p>
+                </div>
+            </div>
+
+            <div class="form-group col-lg-12">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="button" class="btn btn-lg btn-primary" ng-click="register(user)">Register</button>
+                    <span>or</span>
+                    <a href="#/login">Login</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

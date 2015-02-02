@@ -1,0 +1,14 @@
+<div class="post well" ng-repeat="post in posts.results">
+    <header class="post-header">
+        <div class="post-image">
+            <img class="mini-thumbnail" />
+        </div>
+        <div class="post-info">
+            <p><a href="#" class="profile-link">{{ post.createdBy.username }}</a> made a post</p>
+            <p>on <time>{{ post.createdAt | date:'dd-MMM-yyyy'}}</time></p>
+        </div>
+    </header>
+    <section class="post-content">
+        <p>{{ post.content }}</p>
+    </section>
+</div>

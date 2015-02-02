@@ -1,0 +1,32 @@
+<!-- login -->
+<div class="row">
+    <form class="login form-horizontal col-md-6" name="logginForm">
+        <fieldset>
+            <legend><h2>Login</h2></legend>
+            <div class="form-group">
+                <label for="login-username" class="col-lg-4 control-label">Username</label>
+                <div class="col-lg-8">
+                    <span class="error" ng-show="send && logginForm.userName.$error.required">Reqiured !</span>
+                    <span class="error" ng-show="send && logginForm.userName.$error.pattern">Only letters or digits, no white spaces!</span>
+                    <input type="text" class="form-control" id="login-username" placeholder="Username" ng-model="user.username" required="required" name="userName" ng-pattern="word" ng-trim="false">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="login-password" class="col-lg-4 control-label">Password</label>
+                <div class="col-lg-8">
+                    <span class="error" ng-show="send && logginForm.password.$error.required">Reqiured !</span>
+                    <span class="error" ng-show="send && logginForm.password.$error.pattern">Only letters or digits, no white spaces!</span>                
+                    <input type="password" class="form-control" id="login-password" placeholder="Password" ng-model="user.password" required="required" name="password" ng-pattern="word" ng-trim="false">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="button" class="btn btn-lg btn-primary" ng-click="login(user)">Login</button>
+                <span>or</span>
+                <a href="#/register">Register</a>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- end of login -->

@@ -1,6 +1,6 @@
 var app = angular.module('app', ['ngResource', 'ngRoute', 'LocalStorageModule', 'ui.bootstrap']);
 
-app.constant('baseServiceUrl', 'http://localhost:1337/api/');
+app.constant('baseServiceUrl', 'http://softuni-ads.azurewebsites.net/api/');
 
 app.config(['$routeProvider', 'localStorageServiceProvider', 
 				function($routeProvider, localStorageServiceProvider) {	
